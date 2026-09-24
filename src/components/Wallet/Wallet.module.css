@@ -1,0 +1,21 @@
+.section { margin: 0 0 28px; min-width: 0; }
+.headerRow { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:14px; }
+.kicker { display:flex; align-items:center; gap:7px; margin:0 0 5px; color:#8befff; font-size:.7rem; font-weight:800; letter-spacing:.1em; }
+h2 { margin:0; color:var(--text-primary); font-family:var(--font-display); font-size:1.35rem; }
+.subtext { margin:5px 0 0; color:var(--text-muted); font-size:.78rem; }
+.liveBadge { display:flex; align-items:center; gap:6px; flex-shrink:0; padding:6px 9px; border:1px solid rgba(0,245,255,.2); border-radius:999px; background:rgba(0,245,255,.05); color:#8befff; font-size:.62rem; font-weight:800; }
+.balanceGrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.balanceCard { position:relative; overflow:hidden; min-height:145px; padding:16px; border-radius:18px; background:linear-gradient(145deg,#0b1026,#111936); border:1px solid var(--border); box-shadow:var(--shadow-card); }
+.balanceCard::after { content:""; position:absolute; width:120px; height:120px; right:-55px; bottom:-60px; border-radius:50%; filter:blur(2px); opacity:.25; }
+.ves { border-color:rgba(0,245,255,.25); }.ves::after { background:#00f5ff; }
+.gems { border-color:rgba(138,43,226,.3); }.gems::after { background:#8a2be2; }
+.rewards { border-color:rgba(255,0,229,.25); }.rewards::after { background:#ff00e5; }
+.icon { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; width:38px; height:38px; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,.05); color:#00f5ff; box-shadow:0 0 14px rgba(0,245,255,.08); }
+.gems .icon { color:#b57cff; }.rewards .icon { color:#ff6bea; }
+.balanceCard span { display:block; color:var(--text-muted); font-size:.68rem; font-weight:700; }
+.balanceCard strong { display:block; margin-top:3px; color:var(--text-primary); font-family:var(--font-display); font-size:1.25rem; }
+.balanceCard small { display:block; margin-top:4px; color:var(--text-muted); font-size:.62rem; }
+.noteCard { display:flex; align-items:center; gap:12px; margin-top:12px; padding:14px 16px; border:1px solid rgba(0,245,255,.16); border-radius:16px; background:linear-gradient(135deg,rgba(0,245,255,.045),rgba(138,43,226,.055)); }
+.noteIcon { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:36px; height:36px; border-radius:10px; color:#00f5ff; background:rgba(0,245,255,.08); }
+.noteCard strong { color:var(--text-primary); font-size:.8rem; }.noteCard p { margin:3px 0 0; color:var(--text-muted); font-size:.68rem; line-height:1.5; }
+@media (max-width:700px) { .headerRow { align-items:flex-start; }.balanceGrid { grid-template-columns:1fr; }.balanceCard { min-height:120px; }.liveBadge { display:none; } }

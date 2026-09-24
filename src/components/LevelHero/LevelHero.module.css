@@ -1,0 +1,307 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   MAIN PLAYER POWER LEVEL CARD
+   ========================================================= */
+
+.rewardCard {
+  position: relative;
+
+  background:
+    radial-gradient(
+      100% 120% at 0% 0%,
+      rgba(0, 245, 255, 0.16),
+      transparent 52%
+    ),
+    radial-gradient(
+      90% 120% at 100% 100%,
+      rgba(138, 43, 226, 0.18),
+      transparent 58%
+    ),
+    linear-gradient(
+      135deg,
+      #0b1026 0%,
+      #101936 48%,
+      #111044 100%
+    );
+
+  border-radius: var(--radius-lg);
+  padding: 22px;
+
+  border: 1px solid rgba(0, 245, 255, 0.3);
+
+  box-shadow:
+    var(--shadow-card),
+    0 0 25px rgba(0, 245, 255, 0.08),
+    0 0 40px rgba(138, 43, 226, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  overflow: hidden;
+
+  color: #f5f7ff;
+
+  transition:
+    box-shadow 0.35s var(--ease-smooth),
+    border-color 0.35s ease;
+}
+
+/* RGB glow on hover */
+.rewardCard:hover {
+  border-color: rgba(0, 245, 255, 0.5);
+
+  box-shadow:
+    var(--shadow-card),
+    0 0 30px rgba(0, 245, 255, 0.14),
+    0 0 50px rgba(138, 43, 226, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   SPARKLE / EFFECT LAYERS
+   ========================================================= */
+
+.rewardCard :global(.sparkleField) {
+  z-index: 0;
+}
+
+/* Light sweep */
+.sweep {
+  z-index: 1;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.eyebrowRow {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Crown / level icon */
+.eyebrowIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  color: #061018;
+
+  background: linear-gradient(
+    135deg,
+    #00f5ff,
+    #0066ff
+  );
+
+  box-shadow:
+    0 0 10px rgba(0, 245, 255, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* PLAYER POWER LEVEL */
+.eyebrow {
+  flex: 1;
+  min-width: 0;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+
+  color: #8befff;
+
+  text-shadow:
+    0 0 10px rgba(0, 245, 255, 0.15);
+}
+
+/* Info icon */
+.infoIcon {
+  flex-shrink: 0;
+
+  color: #aeb9d6;
+}
+
+/* =========================================================
+   PROGRESS SECTION
+   ========================================================= */
+
+.progressRow {
+  position: relative;
+  z-index: 2;
+
+  max-width: 100%;
+}
+
+/* =========================================================
+   LEVEL / XP TEXT
+   ========================================================= */
+
+/*
+  These selectors improve the readability of the existing
+  LevelHero JSX without changing its layout.
+*/
+
+/* Main XP value */
+.xpValue {
+  color: #00f5ff !important;
+
+  font-weight: 800;
+
+  text-shadow:
+    0 0 12px rgba(0, 245, 255, 0.25);
+}
+
+/* XP supporting label */
+.xpLabel {
+  color: #9da9c8 !important;
+}
+
+/* Level badge / pill */
+.levelPill {
+  color: #ffffff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 102, 255, 0.92),
+      rgba(138, 43, 226, 0.92)
+    ) !important;
+
+  border: 1px solid rgba(0, 245, 255, 0.35);
+
+  box-shadow:
+    0 0 14px rgba(0, 102, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Percentage badge */
+.progressPercent {
+  color: #061018 !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00f5ff,
+      #00ff88
+    ) !important;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 0 12px rgba(0, 245, 255, 0.25);
+}
+
+/* Next-level information */
+.nextLevelText {
+  color: #d9e2ff !important;
+}
+
+/* Highlight XP amount inside next-level text */
+.nextLevelText strong {
+  color: #00f5ff !important;
+
+  text-shadow:
+    0 0 8px rgba(0, 245, 255, 0.2);
+}
+
+/* =========================================================
+   VIEW ACTIVITY BUTTON
+   ========================================================= */
+
+.viewActivity {
+  color: #ffffff !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 102, 255, 0.9),
+      rgba(138, 43, 226, 0.9)
+    ) !important;
+
+  border: 1px solid rgba(0, 245, 255, 0.3);
+
+  box-shadow:
+    0 0 14px rgba(0, 102, 255, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.viewActivity:hover {
+  color: #ffffff !important;
+
+  border-color: rgba(0, 245, 255, 0.6);
+
+  box-shadow:
+    0 0 18px rgba(0, 245, 255, 0.2),
+    0 0 28px rgba(138, 43, 226, 0.12);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SUPPORTING BOOST CARD
+   ========================================================= */
+
+.boostCard {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 245, 255, 0.06),
+      rgba(138, 43, 226, 0.08)
+    ),
+    var(--surface);
+
+  border: 1px solid rgba(0, 245, 255, 0.22);
+
+  border-radius: var(--radius-lg);
+
+  padding: 16px 18px;
+
+  box-shadow:
+    var(--shadow-card),
+    0 0 18px rgba(0, 245, 255, 0.05);
+
+  color: #f5f7ff;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .rewardCard {
+    padding: 18px;
+    gap: 17px;
+  }
+
+  .eyebrow {
+    font-size: 0.68rem;
+  }
+
+  .boostCard {
+    padding: 14px 15px;
+  }
+}

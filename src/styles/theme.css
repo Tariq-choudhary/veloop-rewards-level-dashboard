@@ -1,0 +1,482 @@
+:root {
+  /* ---- deep navy-charcoal dark palette, paired with an electric cyan
+     accent — near-black with just a whisper of blue, never fully
+     flat/neutral black. ---- */
+  --bg: #050816;
+  --bg-elevated: #080d1f;
+  --surface: #0b1026;
+  --surface-2: #111936;
+  --surface-3: #1b2750;
+  --border: rgba(0, 245, 255, 0.14);
+  --border-strong: rgba(255, 0, 229, 0.28);
+
+  --navy: #101623;
+  /* ---- primary brand accent: electric cyan — drives buttons, active
+     states, borders/glows and headline text across the app. Variable
+     names keep the "--gold" prefix from the previous palette so every
+     component reference below still resolves; only the values changed. ---- */
+  --gold: #00f5ff;
+  --gold-strong: #0066ff;
+  --gold-soft: #9b7bff;
+  --silver: #d7dcff;
+  --soft-blue: #4d7cff;
+  --warm-yellow: #ffe600;
+
+  /* ---- literal "coin/reward" gold — kept as actual gold (not recolored)
+     since it represents in-game currency and matches the golden coin/chest
+     art assets; deliberately independent of the cyan brand accent above. ---- */
+  --coin-gold: #f0c14b;
+  --coin-gold-strong: #e0a83a;
+  --coin-gold-soft: #ffd876;
+
+  /* ---- "reward card" treatment — a gold-foil gradient panel used for the
+     level/XP hero and reward callouts: deep bronze corner, pale ivory
+     highlight sweeping through the middle, for more depth than a flat
+     cream fill. Text on these panels uses --ink, not the dark-bg text
+     tokens above. ---- */
+  --gradient-card-warm: linear-gradient(120deg, #b8873a 0%, #f6e2b8 45%, #fffaf0 65%, #d8b877 100%);
+  --gradient-gold-text: linear-gradient(90deg, var(--coin-gold-strong) 0%, var(--coin-gold-soft) 50%, var(--coin-gold-strong) 100%);
+  --ink: #2a1f0d;
+  --ink-muted: rgba(42, 31, 13, 0.68);
+
+  /* secondary accent colors — used for variety in category/activity icon
+     chips (referral, tasks, games, etc.) so the whole app isn't one note. */
+  --purple: #8a2be2;
+  --purple-strong: #ff00e5;
+  --muted-purple: #9b7bff;
+  --green: #00ff88;
+  --green-strong: #00d96f;
+  --subtle-green: #25f5a0;
+
+  --text-primary: #f5f7ff;
+  --text-secondary: #aeb8d8;
+  --text-muted: #68749b;
+
+  --success: #00ff88;
+  --danger: #ff3b81;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.5);
+  --shadow-glow-gold: 0 0 32px rgba(0, 245, 255, 0.35);
+  --shadow-glow-gold-strong: 0 0 46px rgba(255, 0, 229, 0.42);
+  --shadow-glow-purple: 0 0 28px rgba(138, 43, 226, 0.38);
+  --shadow-glow-green: 0 0 28px rgba(0, 255, 136, 0.3);
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --font-body: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(0, 245, 255, 0.13), transparent 26%),
+    radial-gradient(circle at 88% 10%, rgba(255, 0, 229, 0.12), transparent 25%),
+    radial-gradient(circle at 50% 92%, rgba(0, 102, 255, 0.13), transparent 32%),
+    linear-gradient(135deg, #030511 0%, #070b1d 48%, #040615 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  animation: headingIn 0.55s var(--ease-smooth) both;
+}
+
+@keyframes headingIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    animation: none;
+  }
+}
+
+/* ---- primary section headings inside a premiumCard: bigger, bolder,
+   with an underline that sweeps in while the cursor is inside the card. ---- */
+.premiumCard h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.015em;
+}
+
+.premiumCard h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold-strong));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.premiumCard:hover h2::after {
+  transform: scaleX(1);
+}
+
+/* On touch devices there's no hover, so the underline instead sweeps in
+   when the card scrolls through the vertical center of the screen — see
+   useCenterHighlight, which toggles this class via IntersectionObserver. */
+@media (hover: none) {
+  .premiumCard.inViewCenter h2::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- subtle currentColor fill under every lucide outline icon, so accent
+   colors read a little richer without going full "glossy sticker." ---- */
+.lucide {
+  fill: currentColor;
+  fill-opacity: 0.16;
+  stroke-width: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--gold);
+  color: #14100a;
+}
+
+/* shared scrollbar styling for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 8px;
+}
+
+.container-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 20px 124px;
+}
+
+@media (min-width: 1440px) {
+  .container-page {
+    max-width: 1360px;
+    padding: 28px 32px 112px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container-page {
+    max-width: 1560px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container-page {
+    padding: 14px 14px 112px;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- shared confetti burst (used by GameResult + LevelUpModal) ---- */
+.confettiField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.confettiPiece {
+  position: absolute;
+  top: -12px;
+  width: 7px;
+  height: 12px;
+  opacity: 0;
+  border-radius: 2px;
+  animation: confettiFall 1.8s ease-in forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(220px) rotate(340deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confettiPiece {
+    animation: none;
+    display: none;
+  }
+}
+
+/* ---- premium "sheen" — a faint diagonal highlight across the top of a
+   card, like light catching a glossy surface. Purely decorative; add the
+   class alongside a card's own background/border rules. ---- */
+.premiumCard {
+  position: relative;
+}
+
+.premiumCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(255, 255, 255, 0.008) 18%,
+    transparent 38%
+  );
+  pointer-events: none;
+}
+
+/* ---- reusable gold light-sweep: a soft diagonal shine that glides across
+   a badge/button every few seconds. Render as a child element
+   (`<span className="lightSweep" aria-hidden="true" />`) inside a
+   `position: relative; overflow: hidden` container. ---- */
+.lightSweep {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.lightSweep::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(
+    75deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 45%,
+    rgba(165, 243, 252, 0.4) 58%,
+    transparent 100%
+  );
+  animation: sweepAcross 3.4s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+@keyframes sweepAcross {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  34% {
+    opacity: 1;
+  }
+  46% {
+    left: 130%;
+    opacity: 0;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
+/* ---- pulsing gold glow, for badges that should feel "alive" ---- */
+.glowPulse {
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.45));
+  }
+  50% {
+    filter: drop-shadow(0 0 26px rgba(34, 211, 238, 0.8));
+  }
+}
+
+/* ---- persistent twinkling sparkle particles (distinct from the
+   one-shot confetti burst above) — used behind hero/celebration badges
+   for a little ambient light-reflection texture. ---- */
+.sparkleField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.sparkleDot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, rgba(165, 243, 252, 0.6) 70%, transparent 100%);
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.8);
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightSweep::before {
+    animation: none;
+    display: none;
+  }
+  .glowPulse {
+    animation: none;
+  }
+  .sparkleDot {
+    animation: none;
+    opacity: 0.45;
+  }
+}
+
+/* ---- gentle 3D float for the winged level badges: a slow perspective
+   tilt + bob, like the medal is hanging and turning slightly in the
+   light. Put `perspective` on the badge's own wrapper (not a shared
+   ancestor) so each badge tilts independently. ---- */
+.badge3d {
+  display: inline-block;
+  transform-style: preserve-3d;
+  animation: badgeFloat3d 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes badgeFloat3d {
+  0%,
+  100% {
+    transform: rotateY(-10deg) rotateX(4deg) translateY(0);
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 10px rgba(34, 211, 238, 0.3));
+  }
+  50% {
+    transform: rotateY(10deg) rotateX(-4deg) translateY(-4px);
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 20px rgba(34, 211, 238, 0.55));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge3d {
+    animation: none;
+  }
+}
+
+
+/* RGB gaming skin */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.22;
+  background-image: linear-gradient(rgba(0,245,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,229,.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.premiumCard {
+  border-color: rgba(0, 245, 255, 0.15) !important;
+  box-shadow: 0 14px 40px rgba(0,0,0,.42), 0 0 24px rgba(0,245,255,.06);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.premiumCard:hover {
+  border-color: rgba(0,245,255,.34) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,.48), 0 0 30px rgba(0,245,255,.1), 0 0 42px rgba(255,0,229,.05);
+}
+
+.premiumCard h2 { text-transform: uppercase; letter-spacing: .06em; }
+.premiumCard h2::after { background: linear-gradient(90deg, #00f5ff, #8a2be2, #ff00e5); }
+::selection { background: #00f5ff; color: #050816; }

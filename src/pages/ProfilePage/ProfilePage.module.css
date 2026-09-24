@@ -1,0 +1,5 @@
+.header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 18px; }
+.backButton { display:inline-flex; align-items:center; gap:7px; padding:9px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.035); color:var(--text-secondary); font-size:.72rem; font-weight:700; cursor:pointer; transition:.18s ease; }
+.backButton:hover { border-color:rgba(0,245,255,.4); color:var(--text-primary); background:rgba(0,245,255,.06); box-shadow:0 0 14px rgba(0,245,255,.08); }
+.pageTitle { display:flex; align-items:center; gap:7px; color:#8befff; font-size:.68rem; font-weight:800; letter-spacing:.1em; }
+@media (max-width:420px) { .pageTitle { display:none; } .backButton span { display:inline; } }

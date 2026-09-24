@@ -1,0 +1,196 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 11, 20, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(165deg, var(--surface-3), var(--surface));
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--shadow-glow-gold);
+  animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--gradient-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.reached {
+  margin: 2px 0 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pedestalWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.pedestalGlow {
+  position: absolute;
+  top: -10px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.4), rgba(155, 107, 242, 0.15) 55%, transparent 75%);
+  filter: blur(2px);
+}
+
+.hex {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: linear-gradient(155deg, var(--coin-gold-soft), var(--coin-gold-strong) 60%, #8a6a12);
+  padding: 4px;
+  filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.55));
+}
+
+.hexInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: radial-gradient(circle at 50% 30%, var(--surface-3), var(--surface));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--coin-gold);
+}
+
+.hexLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.hexValue {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.pedestalBase {
+  width: 90px;
+  height: 12px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(34, 211, 238, 0.5), transparent 75%);
+}
+
+.name {
+  margin: 8px 0 16px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.rewardRow {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.perkList {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.perkList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perkList svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.achievement {
+  margin: 0 0 20px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.continueBtn {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: linear-gradient(90deg, var(--gold-strong), var(--gold));
+  color: #241a02;
+  font-weight: 800;
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-glow-gold);
+  transition: transform 0.15s var(--ease-smooth);
+}
+
+.continueBtn:hover {
+  transform: translateY(-1px);
+}
+
+.continueBtn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

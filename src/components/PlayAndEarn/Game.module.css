@@ -1,0 +1,633 @@
+/* Shared styles for the XP Catcher mini-game (start / play / result states) */
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 34px 20px;
+  height: 100%;
+  min-height: 300px;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 18% -10%, rgba(34, 211, 238, 0.18), transparent 55%),
+    radial-gradient(circle at 88% 110%, rgba(34, 211, 238, 0.14), transparent 50%),
+    linear-gradient(180deg, var(--surface-2) 0%, var(--bg-elevated) 100%);
+}
+
+.coinField {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.driftCoin {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6c8, var(--coin-gold) 55%, var(--coin-gold-strong) 85%, #8a6a12 100%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.35);
+  opacity: 0.85;
+  animation-name: coinDrift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes coinDrift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(180deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driftCoin {
+    animation: none;
+  }
+}
+
+.gameIconRing {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #241a02;
+  background: linear-gradient(155deg, var(--coin-gold-soft), var(--coin-gold-strong) 65%, #8a6a12);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.5);
+}
+
+.heading {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: var(--gradient-gold-text, linear-gradient(90deg, var(--gold-soft), var(--gold-strong)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.desc {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  max-width: 320px;
+}
+
+.ruleChips {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.ruleChips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.primaryBtn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold-strong) 0%, var(--gold-soft) 50%, var(--gold-strong) 100%);
+  color: #241a02;
+  font-weight: 800;
+  text-transform: uppercase;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  box-shadow: var(--shadow-glow-gold);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: var(--shadow-glow-gold-strong);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  font-weight: 700;
+  border: 1px solid var(--border-strong);
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* --- Gameplay --- */
+
+.playRoot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-height: 0;
+}
+
+.playHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.playEyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.timerPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(34, 211, 238, 0.14);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.timerBad {
+  color: var(--danger) !important;
+  border-color: rgba(240, 102, 90, 0.4) !important;
+  background: rgba(240, 102, 90, 0.1) !important;
+}
+
+.arena {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 420px;
+  max-height: 620px;
+  border-radius: var(--radius-md);
+  background: radial-gradient(
+      circle at 20% 0%,
+      rgba(155, 107, 242, 0.14),
+      transparent 55%
+    ),
+    radial-gradient(circle at 80% 10%, rgba(34, 211, 238, 0.12), transparent 55%),
+    var(--surface-2);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 -30px 50px -30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+
+.scorePanel {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.scoreLabel {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.scoreBigLive {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: var(--coin-gold);
+  line-height: 1.15;
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.4);
+}
+
+.scoreCaption {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.legendRow {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.legendChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.legendDotGold,
+.legendDotPurple {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendDotGold {
+  background: var(--coin-gold);
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.7);
+}
+
+.legendDotPurple {
+  background: var(--purple);
+  box-shadow: 0 0 6px rgba(155, 107, 242, 0.7);
+}
+
+.fallingItem {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.55));
+}
+
+/* Source art is pre-normalized (see src/assets/game-icons) to a square
+   canvas with consistent content fill, so every item type reads as the
+   same visual size through one shared container — no per-type zoom. */
+.fallingItemImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---- catcher: a golden 3D shopping cart, swapped in for the old
+   hoop-and-net so the catch mechanic reads as "shopping" not "sports". ---- */
+.cart {
+  position: absolute;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 144px;
+  height: 112px;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cartGlow {
+  position: absolute;
+  bottom: -2px;
+  width: 104px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(34, 211, 238, 0.55), transparent 75%);
+  filter: blur(2px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.cartGlowCatch {
+  animation: cartGlowPulse 0.42s ease-out;
+}
+
+.cartRing {
+  position: absolute;
+  bottom: 14px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 246, 210, 0.8);
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.cartRingCatch {
+  animation: cartRingPulse 0.42s ease-out;
+}
+
+@keyframes cartGlowPulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+}
+
+@keyframes cartRingPulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.cartIcon {
+  position: relative;
+  color: var(--coin-gold);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(34, 211, 238, 0.55));
+  animation: cartSway 3.2s ease-in-out infinite;
+  transition: transform 0.15s ease;
+}
+
+.cartIconCatch {
+  animation: cartSway 3.2s ease-in-out infinite, cartBounce 0.32s ease-out;
+}
+
+@keyframes cartSway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes cartBounce {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-6px) scale(1.08);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartIcon,
+  .cartIconCatch {
+    animation: none;
+  }
+  .cartGlowCatch,
+  .cartRingCatch {
+    animation: none;
+  }
+}
+
+.popText {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--coin-gold);
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
+  pointer-events: none;
+  animation: popFade 0.48s ease-out;
+  white-space: nowrap;
+}
+
+.popTextBonus {
+  font-size: 0.9rem;
+  color: var(--coin-gold-soft);
+}
+
+.popImg {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@keyframes popFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ---- compact rules/controls banner shown below the play field, matching
+   the reference's below-arena instructions but in our own card style. ---- */
+.rulesBanner {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  color: var(--gold-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.rulesHint {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.resultProgress {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 4px;
+}
+
+.resultProgressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.resultProgressTrack {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.resultProgressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--coin-gold-strong), var(--coin-gold));
+  transition: width 0.5s ease;
+}
+
+/* --- Result --- */
+
+.resultPanel {
+  position: relative;
+  overflow: hidden;
+}
+
+.trophyWrap {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trophyGlow {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent 70%);
+}
+
+.trophyBadge {
+  position: relative;
+  overflow: hidden;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, var(--coin-gold-soft), var(--coin-gold-strong) 65%, #8a6a12);
+  color: #241a02;
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.45);
+}
+
+.completeHeading {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  background: var(--gradient-gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+}
+
+.scoreRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scoreLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.newBestTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #241a02;
+  background: linear-gradient(90deg, var(--coin-gold-strong), var(--coin-gold));
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.scoreBig {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--coin-gold);
+  line-height: 1;
+}
+
+.rewardRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bonusNote {
+  margin: -6px 0 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.btnRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}

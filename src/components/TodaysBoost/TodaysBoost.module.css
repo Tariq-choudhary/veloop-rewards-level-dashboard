@@ -1,0 +1,117 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  min-width: 0;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.iconWrap.purple {
+  background: rgba(155, 107, 242, 0.16);
+  color: var(--purple);
+}
+
+.iconWrap.blue {
+  background: rgba(91, 141, 239, 0.15);
+  color: var(--soft-blue);
+}
+
+.iconWrap.orange {
+  background: rgba(240, 130, 60, 0.15);
+  color: #f0823c;
+}
+
+.textWrap {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.92rem;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .stat {
+    padding: 8px 4px;
+    gap: 6px;
+  }
+  .label {
+    display: none;
+  }
+  .value {
+    font-size: 0.78rem;
+  }
+  .iconWrap {
+    width: 26px;
+    height: 26px;
+  }
+  .iconWrap svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Below ~360px, three side-by-side icon+text pairs no longer fit — stack
+   icon above value in each tile instead of shrinking text unreadably. */
+@media (max-width: 360px) {
+  .stat {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 2px;
+    gap: 4px;
+  }
+  .textWrap {
+    width: 100%;
+  }
+  .value {
+    font-size: 0.68rem;
+  }
+}
